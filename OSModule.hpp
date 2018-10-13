@@ -2,6 +2,7 @@
  #define OSMODULE_HPP
 
 #include "Info.hpp"
+#include "Item.hpp"
 
 #define M_KERN_TYPE "kern.ostype"
 #define M_KERN_VERSION "kern.version"
@@ -17,25 +18,28 @@ class OSModule: public Info {
         ~OSModule(void);
         OSModule(OSModule const &ref);
 
-        OSModule    &operator=(OSModule &ref);
-
         /**
          * Methods
          */
         void        refresh(void);
+        void        addItem(Item *item);
 
         /**
          * Getters
          */
-        std::string         getVersion(void) const;
-        std::string         getRelease(void) const;
-        std::string         getType(void) const;
+        Item         *getVersion(void) const;
+        Item         *getRelease(void) const;
+        Item         *getType(void) const;
+
+        std::vector<Item*>  *items;
 
     private:
 
-        std::string         version;
-        std::string         release;
-        std::string         type;
+        OSModule    &operator=(OSModule &ref);
+
+        Item        *version;
+        Item        *release;
+        Item        *type;
 };
 
 #endif

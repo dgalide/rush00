@@ -4,6 +4,7 @@ SRC = main.cpp
 SRC += Info.cpp
 SRC += OSModule.cpp
 SRC += IMonitorModule.cpp
+SRC += Item.cpp
 
 CLANG_FLAGS = -Wall -Wextra -Werror -g
 

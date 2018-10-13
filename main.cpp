@@ -5,7 +5,6 @@
 #include <unistd.h>
 #include "IMonitorModule.hpp"
 
-
 #define REFRESH 1000000 / 60
 #define KEY_ESC				27
 #define KEY_SPACE 			32
@@ -27,9 +26,11 @@ int main(void)
 {
 	OSModule os;
 
-	std::cout << os.getType() << std::endl;
-	std::cout << os.getRelease() << std::endl;
-	std::cout << os.getVersion() << std::endl;
+	std::vector<Item*>::iterator e = os.items->end();
+
+	for (std::vector<Item*>::iterator b = os.items->begin(); b != e; b++) {
+		std::cout << (*b)->getFormat() << std::endl;
+	}
 
 	initscr();
 	cbreak();
