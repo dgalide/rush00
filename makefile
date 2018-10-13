@@ -3,8 +3,8 @@ NAME = ft_gkrellm
 SRC = main.cpp
 SRC += Info.cpp
 SRC += OSModule.cpp
-SRC += IMonitorModule.cpp
 SRC += Item.cpp
+SRC += IMonitorDisplay.cpp
 
 CLANG_FLAGS = -Wall -Wextra -Werror -g
 
