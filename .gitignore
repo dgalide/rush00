@@ -1,2 +1,4 @@
 .vscode
 help.txt
+*.o
+ft_gkrellm

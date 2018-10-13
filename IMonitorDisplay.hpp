@@ -19,7 +19,7 @@ class MonitorNcurses {
 		MonitorNcurses( int height, int width, int pos_x, int pos_y );
 		~MonitorNcurses( void );
 
-		void display( std::vector<Item*> *);
+		void display( std::string title, std::vector<Item*> *);
 
 		static int current_pos_x;
 
@@ -34,6 +34,5 @@ class MonitorNcurses {
 		int _pos_y;
 		WINDOW *_win;
 };
-
 
 #endif

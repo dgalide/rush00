@@ -38,3 +38,11 @@ std::string         Info::getUsername(void) {
         return (pw->pw_name);
   return (NULL);
 }
+
+vm_statistics_data_t    Info::getVmStat(void) {
+    mach_msg_type_number_t count = HOST_VM_INFO_COUNT;
+    vm_statistics_data_t vmstat;
+
+    host_statistics(mach_host_self(), HOST_VM_INFO, (host_info_t)&vmstat, &count);
+    return vmstat;
+}

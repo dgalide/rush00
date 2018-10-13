@@ -14,7 +14,7 @@ std::string     Item::getFormat(void) {
     std::stringstream ss;
 
     ss << this->label;
-    ss << "\t\t";
+    ss << "\t\t\t";
     ss << this->value;
 
     return ss.str();

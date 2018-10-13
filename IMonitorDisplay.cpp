@@ -13,14 +13,17 @@ MonitorNcurses::~MonitorNcurses( void ) {
 
 }
 
-void MonitorNcurses::display( std::vector<Item*>* test ) {
+void MonitorNcurses::display( std::string title, std::vector<Item*>* test ) {
 	if (test) {
 		std::vector<Item*>::iterator it = test->begin();
 		std::vector<Item*>::iterator it_end = test->end();
+		wattron(this->_win, COLOR_PAIR(6) | A_BOLD | A_UNDERLINE);
+		mvwprintw(this->_win, 1, this->_width / 2 - title.length() / 2, title.c_str());
+		wattroff(this->_win, COLOR_PAIR(6) | A_BOLD | A_UNDERLINE);
 		for (int i = 0; it != it_end; i++, it++) {
 			// wattron(this->_win, COLOR_PAIR(i) | A_BOLD);
 			wattron(this->_win, COLOR_PAIR(i));
-			mvwprintw(this->_win, i + 1, 4, (*it)->getFormat().c_str());
+			mvwprintw(this->_win, i + 2, 10, (*it)->getFormat().c_str());
 			wattroff(this->_win, COLOR_PAIR(i));
 		}
 		wrefresh(this->_win);

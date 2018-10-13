@@ -9,6 +9,10 @@
 #include <uuid/uuid.h>
 #include <unistd.h>
 #include <limits.h>
+#include <mach/vm_statistics.h>
+#include <mach/mach_init.h>
+#include <mach/mach_types.h>
+#include <mach/mach_host.h>
 
 class Info {
 
@@ -20,9 +24,10 @@ class Info {
         Info(void);
         ~Info(void);
 
-        std::string         getInfoByName(std::string name);
-        std::string         getUsername(void);
-        std::string         getHostname(void);
+        std::string             getInfoByName(std::string name);
+        std::string             getUsername(void);
+        std::string             getHostname(void);
+        vm_statistics_data_t    getVmStat(void);
 
     private:
         Info &operator=(Info const &ref);
