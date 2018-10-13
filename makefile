@@ -10,7 +10,12 @@ SRC += RamModule.cpp
 SRC += CpuModule.cpp
 SRC += NetworkModule.cpp
 
-CLANG_FLAGS = -Wall -Wextra -Werror -g
+CLANG_FLAGS = -Werror -Wall -Wextra -g
+
+QTPATH       = -I ~/Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers \
+				-I ~/Qt/5.4/clang_64/lib/QtGui.framework/Versions/5/Headers \
+				-I ~/Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers \
+				-I. -F ~/Qt/5.4/clang_64/lib
 
 CLANG = clang++
 
@@ -19,16 +24,16 @@ OBJ = $(SRC:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CLANG) $(CLANG_FLAGS) -o $(NAME) $(OBJ) -lncurses
+	$(CLANG) $(QTPATH) $(CLANG_FLAGS) -o $(NAME) $(OBJ) -lncurses -framework QtWidgets -framework QtGui -framework QtCore
 
 %.o: %.cpp
-	$(CLANG) $(CLANG_FLAGS) -o $@ -c $<
+	$(CLANG) $(QTPATH) $(CLANG_FLAGS) -o $@ -c $<
 
 clean:
 	rm -rf $(OBJ)
 
 fclean: clean
-	rm $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 

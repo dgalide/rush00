@@ -8,6 +8,8 @@
 #include "RamModule.hpp"
 #include "CpuModule.hpp"
 #include "NetworkModule.hpp"
+#include <QApplication>
+// #include <QWidget>
 
 #define REFRESH 1000000 / 60
 #define KEY_ESC				27
@@ -26,8 +28,8 @@
 #define DEFAULT_HEIGHT_MODULE 8
 
 
-int main(void)
-{
+
+void terminal_display( void ) {
 	OSModule os("OS");
 	UserModule um("User");
 	RamModule rm("Ram");
@@ -80,5 +82,29 @@ int main(void)
 		// six.display();
 	}
 	endwin();
+}
+
+void graphical_display( void ) {
+
+}
+
+int main(int argc, char **argv)
+{
+	// QApplication app(argc, argv);
+	//
+	//
+    // return app.exec();
+	if (argc != 2) {
+		std::cout << "Usage: Need 'Graphics' or 'Terminal' in first parameter" << std::endl;
+		exit(-1);
+	} else {
+		if (std::strcmp(argv[1], "Terminal") == 0){
+			//launch terminal display
+			terminal_display();
+		} else {
+			graphical_display();
+			//Launch graphical display
+		}
+	}
 	return 0;
 }

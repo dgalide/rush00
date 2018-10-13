@@ -35,4 +35,25 @@ class MonitorNcurses {
 		WINDOW *_win;
 };
 
+class MonitorQt {
+
+	public:
+		MonitorQt( int height, int width, int pos_x, int pos_y );
+		~MonitorQt( void );
+
+		void display( std::string title, std::vector<Item*> *);
+
+		static int current_pos_x;
+
+	private:
+		MonitorQt( void );
+		MonitorQt( const MonitorQt &src );
+		MonitorQt &operator=( const MonitorQt &src );
+
+		int _height;
+		int _width;
+		int _pos_x;
+		int _pos_y;
+};
+
 #endif
