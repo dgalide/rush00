@@ -32,7 +32,6 @@ class MonitorNcurses {
 		int _width;
 		int _pos_x;
 		int _pos_y;
-		char *_info;
 		WINDOW *_win;
 };
 

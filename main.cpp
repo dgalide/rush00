@@ -48,8 +48,8 @@ int main(void)
 	// MonitorNcurses main(MAIN_WIN_HEIGHT, MAIN_WIN_WIDTH, MAIN_WIN_X, MAIN_WIN_Y);
 
 
-	MonitorNcurses first(10, DEFAULT_WIDTH_MODULE, 0, MAIN_WIN_Y + 1);
-	// MonitorNcurses second(8, DEFAULT_WIDTH_MODULE, 0, MAIN_WIN_Y + 1);
+	MonitorNcurses first(os.items->size() + 3, DEFAULT_WIDTH_MODULE, 0, MAIN_WIN_Y + 1);
+	MonitorNcurses second(os.items->size() + 3, DEFAULT_WIDTH_MODULE, 0, MAIN_WIN_Y + 1);
 	// MonitorNcurses third(12, DEFAULT_WIDTH_MODULE, 0, MAIN_WIN_Y + 1);
 	// MonitorNcurses four(14, DEFAULT_WIDTH_MODULE, 0, MAIN_WIN_Y + 1);
 	// MonitorNcurses five(14, DEFAULT_WIDTH_MODULE, 0, MAIN_WIN_Y + 1);
@@ -60,11 +60,8 @@ int main(void)
 	while ((key = getch()) != KEY_ESC) {
 		usleep(REFRESH);
 		// main.display();
-		// for (std::vector<Item*>::iterator b = os.items->begin(); b != e; b++) {
-			// std::cout << (*b)->getFormat() << std::endl;
-			first.display(os.items);
-		// }
-		// second.display();
+		first.display(os.items);
+		second.display(os.items);
 		// third.display();
 		// four.display();
 		// five.display();
