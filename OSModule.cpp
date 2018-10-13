@@ -1,6 +1,6 @@
 #include "OSModule.hpp"
 
-OSModule::OSModule(void): Info() {
+OSModule::OSModule(std::string title): Info(), title(title) {
     this->items = new std::vector<Item*>();
 
     this->release = new Item("Release :", this->getInfoByName(M_KERN_RELEASE));

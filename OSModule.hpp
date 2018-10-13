@@ -14,7 +14,7 @@ class OSModule: public Info {
 
     public:
 
-        OSModule(void);
+        OSModule(std::string title);
         ~OSModule(void);
         OSModule(OSModule const &ref);
 
@@ -32,6 +32,7 @@ class OSModule: public Info {
         Item         *getType(void) const;
 
         std::vector<Item*>  *items;
+        std::string         title;
 
     private:
 

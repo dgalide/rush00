@@ -4,6 +4,11 @@
 #include <iostream>
 #include <sys/types.h>
 #include <sys/sysctl.h>
+#include <sys/types.h>
+#include <pwd.h>
+#include <uuid/uuid.h>
+#include <unistd.h>
+#include <limits.h>
 
 class Info {
 
@@ -13,12 +18,16 @@ class Info {
          * Constructor / Destructor
          */
         Info(void);
-        Info(Info const &ref);
         ~Info(void);
 
-        Info &operator=(Info const &ref);
-
         std::string         getInfoByName(std::string name);
+        std::string         getUsername(void);
+        std::string         getHostname(void);
+
+    private:
+        Info &operator=(Info const &ref);
+        Info(Info const &ref);
+
 };
 
 #endif

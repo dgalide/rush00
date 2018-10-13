@@ -4,10 +4,6 @@ Info::Info(void) {}
 
 Info::~Info(void) {}
 
-Info::Info(Info const &ref) {
-    (void)ref;
-}
-
 Info        &Info::operator=(Info const &ref) {
     if (this != &ref) {
         *this = ref;
@@ -23,4 +19,22 @@ std::string        Info::getInfoByName(std::string name) {
     std::strcpy(_name, name.c_str());
     sysctlbyname(_name, &out, &s, NULL, 256);
     return out;
+}
+
+std::string         Info::getHostname(void) {
+    char hostname[256];
+    int result;
+    result = gethostname(hostname, 256);
+    return std::string(hostname);
+}
+
+std::string         Info::getUsername(void) {
+    struct passwd *pw;
+    uid_t uid;
+
+    uid = getuid();
+    pw = getpwuid(uid);
+    if (pw)
+        return (pw->pw_name);
+  return (NULL);
 }
