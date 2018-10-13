@@ -19,10 +19,6 @@ OSModule::~OSModule(void) {
     delete this->items;
 }
 
-OSModule::OSModule(OSModule const &ref) {
-    (void)ref;
-}
-
 void            OSModule::refresh(void) {
     this->version->setValue(this->getInfoByName(M_KERN_VERSION));
     this->release->setValue(this->getInfoByName(M_KERN_RELEASE));

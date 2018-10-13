@@ -16,7 +16,6 @@ class OSModule: public Info {
 
         OSModule(std::string title);
         ~OSModule(void);
-        OSModule(OSModule const &ref);
 
         /**
          * Methods
@@ -37,6 +36,7 @@ class OSModule: public Info {
     private:
 
         OSModule    &operator=(OSModule &ref);
+        OSModule(OSModule const &ref);
 
         Item        *version;
         Item        *release;

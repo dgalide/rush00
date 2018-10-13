@@ -12,13 +12,23 @@ Info        &Info::operator=(Info const &ref) {
 }
 
 std::string        Info::getInfoByName(std::string name) {
-    char *_name = new char[name.length() + 1];
+    char _name[name.length() + 1];
     char out[256];
     size_t s = sizeof(out);
     
     std::strcpy(_name, name.c_str());
     sysctlbyname(_name, &out, &s, NULL, 256);
     return out;
+}
+
+std::string        Info::getInfoByNameInt(std::string name) {
+    char cstr[name.length()+1];
+    unsigned int       result;
+    size_t  len = sizeof(result);
+
+    std::strcpy (cstr, name.c_str());
+    sysctlbyname(cstr, &result, &len, 0, 256);
+    return std::to_string(result);
 }
 
 std::string         Info::getHostname(void) {

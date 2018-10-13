@@ -25,6 +25,7 @@ class Info {
         ~Info(void);
 
         std::string             getInfoByName(std::string name);
+        std::string             getInfoByNameInt(std::string name);
         std::string             getUsername(void);
         std::string             getHostname(void);
         vm_statistics_data_t    getVmStat(void);
