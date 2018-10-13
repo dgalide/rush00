@@ -8,8 +8,7 @@
 #include "RamModule.hpp"
 #include "CpuModule.hpp"
 #include "NetworkModule.hpp"
-#include <QApplication>
-// #include <QWidget>
+#include <SFML/Graphics.hpp>
 
 #define REFRESH 1000000 / 60
 #define KEY_ESC				27
@@ -90,10 +89,6 @@ void graphical_display( void ) {
 
 int main(int argc, char **argv)
 {
-	// QApplication app(argc, argv);
-	//
-	//
-    // return app.exec();
 	if (argc != 2) {
 		std::cout << "Usage: Need 'Graphics' or 'Terminal' in first parameter" << std::endl;
 		exit(-1);

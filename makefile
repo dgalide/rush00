@@ -1,3 +1,5 @@
+export LD_LIBRARY_PATH=~/.brew/lib/
+
 NAME = ft_gkrellm
 
 SRC = main.cpp
@@ -12,11 +14,6 @@ SRC += NetworkModule.cpp
 
 CLANG_FLAGS = -Werror -Wall -Wextra -g
 
-QTPATH       = -I ~/Qt/5.4/clang_64/lib/QtWidgets.framework/Versions/5/Headers \
-				-I ~/Qt/5.4/clang_64/lib/QtGui.framework/Versions/5/Headers \
-				-I ~/Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers \
-				-I. -F ~/Qt/5.4/clang_64/lib
-
 CLANG = clang++
 
 OBJ = $(SRC:.cpp=.o)
@@ -24,10 +21,10 @@ OBJ = $(SRC:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CLANG) $(QTPATH) $(CLANG_FLAGS) -o $(NAME) $(OBJ) -lncurses -framework QtWidgets -framework QtGui -framework QtCore
+	$(CLANG) -I ~/.brew/include/ $(CLANG_FLAGS) -o $(NAME) $(OBJ) -lncurses  -L ~/.brew/lib/ -lsfml-graphics -lsfml-window -lsfml-system
 
 %.o: %.cpp
-	$(CLANG) $(QTPATH) $(CLANG_FLAGS) -o $@ -c $<
+	$(CLANG) -I ~/.brew/include/ $(CLANG_FLAGS) -o $@ -c $<
 
 clean:
 	rm -rf $(OBJ)
