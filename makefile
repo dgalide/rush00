@@ -1,6 +1,8 @@
 NAME = rush01
 
 SRC = main.cpp
+SRC += Info.cpp
+SRC += OSModule.cpp
 
 CLANG_FLAGS = -Wall -Wextra -Werror
 
