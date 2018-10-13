@@ -4,7 +4,6 @@
 #include <iostream>
 #include <sys/types.h>
 #include <sys/sysctl.h>
-#include <sys/types.h>
 #include <pwd.h>
 #include <uuid/uuid.h>
 #include <unistd.h>
@@ -13,6 +12,12 @@
 #include <mach/mach_init.h>
 #include <mach/mach_types.h>
 #include <mach/mach_host.h>
+#include <sys/socket.h>
+#include <sys/socketvar.h>
+#include <netinet/ip.h>
+#include <netinet/ip_var.h>
+#include <netinet/tcp.h>
+#include <netinet/tcp_var.h>
 
 class Info {
 
@@ -29,6 +34,8 @@ class Info {
         std::string             getUsername(void);
         std::string             getHostname(void);
         vm_statistics_data_t    getVmStat(void);
+        struct ipstat           getNetStat(std::string name);
+        struct tcpstat          getNetTcpStat(std::string name);
 
     private:
         Info &operator=(Info const &ref);

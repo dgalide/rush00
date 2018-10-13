@@ -8,6 +8,7 @@ SRC += IMonitorDisplay.cpp
 SRC += UserModule.cpp
 SRC += RamModule.cpp
 SRC += CpuModule.cpp
+SRC += NetworkModule.cpp
 
 CLANG_FLAGS = -Wall -Wextra -Werror -g
 

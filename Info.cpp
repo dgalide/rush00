@@ -22,13 +22,31 @@ std::string        Info::getInfoByName(std::string name) {
 }
 
 std::string        Info::getInfoByNameInt(std::string name) {
-    char cstr[name.length()+1];
+    char _name[name.length()+1];
     unsigned int       result;
     size_t  len = sizeof(result);
 
-    std::strcpy (cstr, name.c_str());
-    sysctlbyname(cstr, &result, &len, 0, 256);
+    std::strcpy (_name, name.c_str());
+    sysctlbyname(_name, &result, &len, NULL, 256);
     return std::to_string(result);
+}
+
+struct ipstat        Info::getNetStat(std::string name) {
+    char _name[name.length()+1];
+    struct ipstat stat;
+    size_t oldlen = sizeof(struct ipstat);
+
+	sysctlbyname(_name, &stat, &oldlen, NULL, 256);
+    return stat;
+}
+
+struct tcpstat        Info::getNetTcpStat(std::string name) {
+    char _name[name.length()+1];
+    struct tcpstat stat;
+    size_t oldlen = sizeof(struct ipstat);
+
+	sysctlbyname(_name, &stat, &oldlen, NULL, 256);
+    return stat;
 }
 
 std::string         Info::getHostname(void) {

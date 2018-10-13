@@ -7,6 +7,7 @@
 #include "UserModule.hpp"
 #include "RamModule.hpp"
 #include "CpuModule.hpp"
+#include "NetworkModule.hpp"
 
 #define REFRESH 1000000 / 60
 #define KEY_ESC				27
@@ -31,6 +32,7 @@ int main(void)
 	UserModule um("User");
 	RamModule rm("Ram");
 	CpuModule cpu("CPU");
+	NetworkModule nt("Network");
 
 	initscr();
 	cbreak();
@@ -53,7 +55,7 @@ int main(void)
 	MonitorNcurses second(um.items->size() + 3, DEFAULT_WIDTH_MODULE, 0, MAIN_WIN_Y + 1);
 	MonitorNcurses third(rm.items->size() + 3, DEFAULT_WIDTH_MODULE, 0, MAIN_WIN_Y + 1);
 	MonitorNcurses fourth(cpu.items->size() + 3, DEFAULT_WIDTH_MODULE, 0, MAIN_WIN_Y + 1);
-	// MonitorNcurses four(14, DEFAULT_WIDTH_MODULE, 0, MAIN_WIN_Y + 1);
+	MonitorNcurses fifth(nt.items->size() + 3, DEFAULT_WIDTH_MODULE, 0, MAIN_WIN_Y + 1);
 	// MonitorNcurses five(14, DEFAULT_WIDTH_MODULE, 0, MAIN_WIN_Y + 1);
 	// MonitorNcurses six(8, DEFAULT_WIDTH_MODULE, 0, MAIN_WIN_Y + 1);
 
@@ -67,10 +69,12 @@ int main(void)
 		third.display(rm.title, rm.items);
 		third.display(rm.title, rm.items);
 		fourth.display(cpu.title, cpu.items);
+		fifth.display(nt.title, nt.items);
 		os.refresh();
 		um.refresh();
 		rm.refresh();
 		cpu.refresh();
+		nt.refresh();
 		// four.display();
 		// five.display();
 		// six.display();
