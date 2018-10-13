@@ -28,14 +28,6 @@ int main(void)
 	OSModule os("OS");
 	UserModule um("User");
 
-	// std::vector<Item*>::iterator e = um.items->end();
-
-	// for (std::vector<Item*>::iterator b = um.items->begin(); b != e; b++) {
-	// 		std::cout << (*b)->getFormat() << std::endl;
-	// 	}
-
-
-
 	initscr();
 	cbreak();
 	keypad(stdscr, TRUE);
@@ -53,7 +45,6 @@ int main(void)
 
 	// MonitorNcurses main(MAIN_WIN_HEIGHT, MAIN_WIN_WIDTH, MAIN_WIN_X, MAIN_WIN_Y);
 
-
 	MonitorNcurses first(os.items->size() + 3, DEFAULT_WIDTH_MODULE, 0, MAIN_WIN_Y + 1);
 	MonitorNcurses second(um.items->size() + 3, DEFAULT_WIDTH_MODULE, 0, MAIN_WIN_Y + 1);
 	// MonitorNcurses third(12, DEFAULT_WIDTH_MODULE, 0, MAIN_WIN_Y + 1);
@@ -66,8 +57,8 @@ int main(void)
 	while ((key = getch()) != KEY_ESC) {
 		usleep(REFRESH);
 		// main.display();
-		first.display(os.items);
-		second.display(um.items);
+		first.display(os.title, os.items);
+		second.display(um.title, um.items);
 		// third.display();
 		// four.display();
 		// five.display();
