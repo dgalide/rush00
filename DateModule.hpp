@@ -26,6 +26,8 @@ class DateModule: public Info {
 
         DateModule    &operator=(DateModule &ref);
         DateModule(DateModule const &ref);
+
+        Item            *date;
 };
 
 #endif

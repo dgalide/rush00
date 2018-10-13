@@ -36,6 +36,7 @@ class Info {
         vm_statistics_data_t    getVmStat(void);
         struct ipstat           getNetStat(std::string name);
         struct tcpstat          getNetTcpStat(std::string name);
+        std::string             getDate(void);
 
     private:
         Info &operator=(Info const &ref);

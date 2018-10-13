@@ -9,6 +9,7 @@ SRC += UserModule.cpp
 SRC += RamModule.cpp
 SRC += CpuModule.cpp
 SRC += NetworkModule.cpp
+SRC += DateModule.cpp
 
 CLANG_FLAGS = -Wall -Wextra -Werror -g
 

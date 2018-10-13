@@ -49,6 +49,16 @@ struct tcpstat        Info::getNetTcpStat(std::string name) {
     return stat;
 }
 
+std::string         Info::getDate(void) {
+    time_t     now = time(0);
+    struct tm  tstruct;
+    char       buf[80];
+    tstruct = *localtime(&now);
+
+    strftime(buf, sizeof(buf), "%Y-%m-%d.%X", &tstruct);
+    return (std::string(buf));
+}
+
 std::string         Info::getHostname(void) {
     char hostname[256];
     int result;
