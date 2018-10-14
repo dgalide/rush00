@@ -5,7 +5,11 @@
 #include <string>
 #include <vector>
 #include "Item.hpp"
+#include <SFML/Graphics.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
 
+#define FONT_SIZE_LINE 15
+#define FONT_SIZE_TITLE 30
 
 class IMonitorDisplay {
 
@@ -35,25 +39,26 @@ class MonitorNcurses {
 		WINDOW *_win;
 };
 
-class MonitorQt {
+class MonitorSfml : public sf::RectangleShape {
 
 	public:
-		MonitorQt( int height, int width, int pos_x, int pos_y );
-		~MonitorQt( void );
+		MonitorSfml( sf::RenderWindow  &window, int height, int width, int pos_x, int pos_y );
+		~MonitorSfml( void );
 
 		void display( std::string title, std::vector<Item*> *);
 
 		static int current_pos_x;
 
 	private:
-		MonitorQt( void );
-		MonitorQt( const MonitorQt &src );
-		MonitorQt &operator=( const MonitorQt &src );
+		MonitorSfml( void );
+		MonitorSfml( const MonitorSfml &src );
+		MonitorSfml &operator=( const MonitorSfml &src );
 
 		int _height;
 		int _width;
 		int _pos_x;
 		int _pos_y;
+		sf::RenderWindow &_win;
 };
 
 #endif
