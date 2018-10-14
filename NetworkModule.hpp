@@ -30,10 +30,10 @@ class NetworkModule: public Info {
         NetworkModule    &operator=(NetworkModule &ref);
         NetworkModule(NetworkModule const &ref);
 
-        Item        *received;
-        Item        *generatedHere;
-        Item        *tcpTotalIn;
-        Item        *tcpTotalOut;
+        Item        *_ipackets;
+        Item        *_opackets;
+        Item        *_ibytes;
+        Item        *_obytes;
 };
 
 #endif

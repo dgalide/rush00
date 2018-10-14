@@ -34,9 +34,14 @@ class Info {
         std::string             getUsername(void);
         std::string             getHostname(void);
         vm_statistics_data_t    getVmStat(void);
-        struct ipstat           getNetStat(std::string name);
+        void                    getNetStat(void);
         struct tcpstat          getNetTcpStat(std::string name);
         std::string             getDate(void);
+
+        long int    ipackets;
+        long int    opackets;
+        long int    ibytes;
+        long int    obytes;
 
     private:
         Info &operator=(Info const &ref);

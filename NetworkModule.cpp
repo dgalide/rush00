@@ -1,24 +1,26 @@
 #include "NetworkModule.hpp"
+#include <net/route.h>
+#include <net/if.h>
+#include <sys/sysctl.h>
 
 NetworkModule::NetworkModule(std::string title): Info(), title(title) {
     this->items = new std::vector<Item*>();
 
-    this->received = new Item("Total Packets Received : ", std::to_string(this->getNetStat(M_NET_STAT).ips_total));
-    this->generatedHere = new Item("Total Packets Generated Here : ", std::to_string(this->getNetStat(M_NET_STAT).ips_localout));
-    this->tcpTotalIn = new Item("Total TCP in : ", std::to_string(this->getNetTcpStat(M_NET_TCP_STAT).tcps_sndtotal));
-    this->tcpTotalOut = new Item("Total TCP out : ", std::to_string(this->getNetTcpStat(M_NET_TCP_STAT).tcps_rcvtotal));
-
-    this->addItem(this->received);
-    this->addItem(this->generatedHere);
-    this->addItem(this->tcpTotalIn);
-    this->addItem(this->tcpTotalOut);
+    this->_ipackets = new Item("Packets IN : ", "0");
+    this->_opackets = new Item("Packets OUT : ", "0");
+    this->_ibytes = new Item("Bytes IN : ", "0");
+    this->_obytes = new Item("Bytes OUT : ", "0");
+    this->addItem(this->_ipackets);
+    this->addItem(this->_opackets);
+    this->addItem(this->_ibytes);
+    this->addItem(this->_obytes);
 }
 
 NetworkModule::~NetworkModule(void) {
-    delete this->generatedHere;
-    delete this->received;
-    delete this->tcpTotalIn;
-    delete this->tcpTotalOut;
+    delete this->_opackets;
+    delete this->_ipackets;
+    delete this->_ibytes;
+    delete this->_obytes;
     delete this->items;
 }
 
@@ -27,10 +29,11 @@ NetworkModule::NetworkModule(NetworkModule const &ref) {
 }
 
 void            NetworkModule::refresh(void) {
-    this->received->setValue(std::to_string(this->getNetStat(M_NET_STAT).ips_total));
-    this->generatedHere->setValue(std::to_string(this->getNetStat(M_NET_STAT).ips_localout));
-    this->tcpTotalIn->setValue(std::to_string(this->getNetTcpStat(M_NET_TCP_STAT).tcps_sndtotal));
-    this->tcpTotalOut->setValue(std::to_string(this->getNetTcpStat(M_NET_TCP_STAT).tcps_rcvtotal));
+    this->getNetStat();
+    this->_ipackets->setValue(std::to_string(this->ipackets / 1000) + " k");
+    this->_opackets->setValue(std::to_string(this->opackets / 1000) + " k");
+    this->_ibytes->setValue(std::to_string(this->ibytes / 1000) + " mb");
+    this->_obytes->setValue(std::to_string(this->obytes / 1000) + " mb");
 }
 
 void            NetworkModule::addItem(Item *item) {
